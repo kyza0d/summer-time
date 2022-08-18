@@ -7,6 +7,7 @@ local palette = {
 	background  = { "#1D1F21", "#2E2E32" },
 	foreground  = { "#d7d9e0", "#A6ABB8" },
 	comment     = { "#676B6F", "#676B6F" },
+  dimmed      = { "#8e9399", "#676B6F" },
 	yellow      = { "#F7C95C", "#F7C95C" },
   blue        = { "#93DDFA", "#93DDFA" },
 	purple      = { "#E58AC9", "#E58AC9" },
@@ -23,6 +24,7 @@ M.colorscheme = function()
 
   local background = palette["background"][variant]
   local foreground = palette["foreground"][variant]
+  local dimmed     = palette["dimmed"][variant]
   local orange     = palette["orange"][variant]
   local yellow     = palette["yellow"][variant]
   local blue       = palette["blue"][variant]
@@ -37,11 +39,11 @@ M.colorscheme = function()
 	local syntax = {
     TSVariable        = { fg = foreground }, -- Variable names that don't fit into other categories.
     TSLabel           = { fg = foreground }, -- GOTO labels: `label:` in C, and `::label::` in Lua.
-    TSConstructor     = { fg = foreground }, -- Constructor calls and definitions: `{}` in Lua, and Java constructors.
-    TSTagDelimiter    = { fg = foreground }, -- Tag delimiters like `<` `>` `/`.
-    TSPunctBracket    = { fg = foreground }, -- Brackets, braces, parentheses, etc.
-    TSPunctDelimiter  = { fg = foreground }, -- Punctuation delimiters: Periods, commas, semicolons, etc.
-    TSOperator        = { fg = foreground }, -- Binary or unary operators: `+`, and also `->` and `*` in C.
+    TSConstructor     = { fg = dimmed }, -- Constructor calls and definitions: `{}` in Lua, and Java constructors.
+    TSTagDelimiter    = { fg = dimmed }, -- Tag delimiters like `<` `>` `/`.
+    TSPunctBracket    = { fg = dimmed }, -- Brackets, braces, parentheses, etc.
+    TSPunctDelimiter  = { fg = dimmed }, -- Punctuation delimiters: Periods, commas, semicolons, etc.
+    TSOperator        = { fg = dimmed }, -- Binary or unary operators: `+`, and also `->` and `*` in C.
     TSVariableBuiltin = { fg = foreground }, -- Variable names defined by the language: `this` or `self` in Javascript.
     TSPunctSpecial    = { fg = purple },     -- Special punctuation that doesn't fit into the previous categories.
     TSKeyword         = { fg = purple },     -- Keywords that don't fit into other categories.
@@ -159,7 +161,7 @@ M.colorscheme = function()
         yellow     = palette["yellow"],
         blue       = palette["blue"],
         purple     = palette["purple"],
-        accent     = palette["foreground"],
+        accent     = palette["blue"],
 
         highlights = {
           PmenuSel  = { bg = blend(foreground, background, 0.85) },
