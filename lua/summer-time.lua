@@ -4,16 +4,16 @@ local blend = require("summer-time.utils").blend
 
 -- stylua: ignore
 local palette = {
-	background  = { "#1D1F21", "#2E2E32" },
-	foreground  = { "#d7d9e0", "#A6ABB8" },
-	comment     = { "#676B6F", "#676B6F" },
+  background  = { "#2c2f33", "#ffffff" },
+  foreground  = { "#d7d9e0", "#A6ABB8" },
+  comment     = { "#676B6F", "#676B6F" },
   dimmed      = { "#8e9399", "#676B6F" },
-	yellow      = { "#F7C95C", "#F7C95C" },
+  yellow      = { "#F7C95C", "#F7C95C" },
   blue        = { "#93DDFA", "#93DDFA" },
-	purple      = { "#E58AC9", "#E58AC9" },
-	orange      = { "#FFA94D", "#D08447" },
-	green       = { "#c9e589", "#c9e589" },
-	red         = { "#e58e89", "#e58e89" },
+  purple      = { "#E58AC9", "#E58AC9" },
+  orange      = { "#FFA94D", "#D08447" },
+  green       = { "#c9e589", "#c9e589" },
+  red         = { "#e58e89", "#e58e89" },
 }
 
 -- stylua: ignore
@@ -32,19 +32,18 @@ M.colorscheme = function()
 
   local comment    = palette["comment"][variant]
 
-	vim.api.nvim_command("colorscheme summer-time")
+  vim.api.nvim_command("colorscheme summer-time")
 
   -- See :help 'nvim-treesitter-highlights'
 
-	local syntax = {
-    TSVariable        = { fg = foreground }, -- Variable names that don't fit into other categories.
-    TSLabel           = { fg = foreground }, -- GOTO labels: `label:` in C, and `::label::` in Lua.
-    TSConstructor     = { fg = dimmed }, -- Constructor calls and definitions: `{}` in Lua, and Java constructors.
-    TSTagDelimiter    = { fg = dimmed }, -- Tag delimiters like `<` `>` `/`.
-    TSPunctBracket    = { fg = dimmed }, -- Brackets, braces, parentheses, etc.
-    TSPunctDelimiter  = { fg = dimmed }, -- Punctuation delimiters: Periods, commas, semicolons, etc.
-    TSOperator        = { fg = dimmed }, -- Binary or unary operators: `+`, and also `->` and `*` in C.
+  local syntax = {
+    -- TSVariable        = { fg = foreground }, -- Variable names that don't fit into other categories.
+    TSLabel           = { fg = purple },     -- GOTO labels: `label:` in C, and `::label::` in Lua.
     TSVariableBuiltin = { fg = foreground }, -- Variable names defined by the language: `this` or `self` in Javascript.
+    TSTagDelimiter    = { fg = dimmed },     -- Tag delimiters like `<` `>` `/`.
+    TSPunctBracket    = { fg = dimmed },     -- Brackets, braces, parentheses, etc.
+    TSPunctDelimiter  = { fg = dimmed },     -- Punctuation delimiters: Periods, commas, semicolons, etc.
+    TSOperator        = { fg = dimmed },     -- Binary or unary operators: `+`, and also `->` and `*` in C.
     TSPunctSpecial    = { fg = purple },     -- Special punctuation that doesn't fit into the previous categories.
     TSKeyword         = { fg = purple },     -- Keywords that don't fit into other categories.
     TSInclude         = { fg = purple },     -- File or module inclusion keywords: `#include` in C, `use` or `extern crate` in Rust.
@@ -60,27 +59,26 @@ M.colorscheme = function()
     TSNumber          = { fg = orange },     -- Numeric literals that don't fit into other categories.
     TSFloat           = { fg = orange },     -- Floating-point number literals.
     TSParameter       = { fg = foreground }, -- Parameters of a function.
-    TSProperty        = { fg = foreground }, -- Object and struct fields.
     TSString          = { fg = yellow },     -- String literals.
     TSBoolean         = { fg = orange },     -- Boolean literals: `True` and `False` in Python.
     TSStringRegex     = { fg = purple },     -- Regular expression literals.
     TSStringEscape    = { fg = purple },     -- Regular expression literals.
-    TSConstant        = { fg = foreground }, -- Constants identifiers. These might not be semantically constant.
+    TSConstant        = { fg = purple }, -- Constants identifiers. These might not be semantically constant.
     TSConstBuiltin    = { fg = purple },     -- Built-in constant values: `nil` in Lua.
     TSTypeBuiltin     = { fg = orange },     -- Built-in types: `i32` in Rust.
     TSNote            = { fg = orange },     -- Text representation of an informational note.
     TSDanger          = { fg = purple },     -- Text representation of a danger note.
     TSWarning         = { fg = orange },     -- Text representation of a warning note.
     TSType            = { fg = foreground }, -- Type (and class) definitions and annotations.
+    TSConstructor     = { fg = blue },       -- Constructor calls and definitions: `{}` in Lua, and Java constructors.
     TSNamespace       = { fg = purple },     -- Identifiers referring to modules and namespaces.
+    TSProperty        = { fg = foreground }, -- Object and struct fields.
     TSURI             = { fg = blue },       -- URIs like hyperlinks or email addresses.
     TSComment         = { fg = comment },    -- Line comments and block comments.
 
     -- Language-specific highlights
 
     -- JavaScript / TypeScript
-    tsxTSConstructor  = { fg = blue },   -- TSX components tags.
-    jsxTSConstructor  = { fg = orange }, -- JSX components tags.
 
     -- C / C++
     cStorageClass     = { fg = purple },
@@ -122,7 +120,6 @@ M.colorscheme = function()
     Character      = { links = "TSStringRegex" },
     StorageClass   = { links = "cStorageClass" },
     Typedef        = { links = "TSType" },
-    NonText        = { links = "TSVariable" },
     SpecialKey     = { links = "TSComment" },
     Special        = { links = "TSPunctSpecial" },
     Title          = { links = "TSKeyword" },
@@ -130,7 +127,7 @@ M.colorscheme = function()
     -- Miscellaneous
     htmlLink          = { links = "TSURI" }, -- Hyperlinks.
     helpHyperTextJump = { links = "TSURI" }, -- Jump links in help
-	}
+  }
 
   --[[
     @param groups string
@@ -165,12 +162,12 @@ M.colorscheme = function()
 
         highlights = {
           PmenuSel  = { bg = blend(foreground, background, 0.85) },
-          Visual    = { bg = blend(foreground, background, 0.85) },
+          Visual    = { bg = blend(blue, background, 0.85) },
           IncSearch = { bg = blend(foreground, background, 0.50) },
           Search    = { links = "Visual" },
         },
-      },
-    },
+      }
+    }
   })
 end
 
