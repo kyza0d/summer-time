@@ -1,1 +1,1 @@
-require("summer-time").colorscheme()
+require("summer-time").setup()
